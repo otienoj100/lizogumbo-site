@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wines — Liz Ogumbo®</title>
+<meta name="description" content="Liz Ogumbo Wines™ — a sensory storytelling platform bringing together wine, music, memory and culture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html#home" class="logo">LIZ OGUMBO<sup>®</sup></a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="kensoul.html" class="nav-link">KenSoul™</a></li>
+        <li><a href="fashion.html" class="nav-link">Fashion</a></li>
+        <li><a href="denimania.html" class="nav-link">DeniMania™</a></li>
+        <li><a href="wines.html" class="nav-link">Wines</a></li>
+        <li><a href="index.html#kamatana" class="nav-link">Kamatana™</a></li>
+        <li><a href="index.html#blog" class="nav-link">Blog</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page-hero">
+  <div class="wrap">
+    <a href="index.html#wines" class="back-link">&larr; Back to overview</a>
+    <span class="eyebrow accent-wines">Since 2018 · Vine to Soul™</span>
+    <h1>Liz Ogumbo Wines™</h1>
+    <p class="lede">A sensory storytelling platform bringing together wine, music, memory and culture. Every bottle is an invitation to pause, connect and savour a story beyond the glass.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="v-media" style="margin-bottom:50px;">
+      <img src="https://static.wixstatic.com/media/02ca65_5472d4579f4e4198bc79d63ec4c96147~mv2.jpg" alt="Liz Ogumbo Wines and corks">
+    </div>
+    <p class="prose" style="margin-bottom:40px;"><i>Wine with rhythm. Soul in every sip.</i> The Vine to Soul™ ecosystem spans five expressions of Liz's world — from the wines themselves to the classroom, the page, the album and the room.</p>
+
+    <div class="wine-grid">
+      <div class="wine-card">
+        <h4>The Foundation</h4>
+        <p>Five curated wines, each expressing place, emotion and lived experience.</p>
+        <a href="mailto:winewisdomwonders@gmail.com?subject=Liz%20Ogumbo%20Wines%20Enquiry">Enquire about the collection →</a>
+      </div>
+      <div class="wine-card">
+        <h4>Wine, Wisdom &amp; Wonders™</h4>
+        <p>A digital masterclass exploring wine through storytelling, culture and sensory discovery.</p>
+        <a href="winewisdomwonders.html">View the masterclass →</a>
+      </div>
+      <div class="wine-card">
+        <h4>Vine to Soul™ Memoir</h4>
+        <p>A forthcoming memoir on resilience and reinvention, through the lens of wine.</p>
+        <a href="mailto:winewisdomwonders@gmail.com?subject=Join%20the%20Vine%20to%20Soul%E2%84%A2%20Mailing%20List">Join the mailing list →</a>
+      </div>
+      <div class="wine-card">
+        <h4>The Soundtrack</h4>
+        <p>A conceptual album in production — the musical companion to the memoir.</p>
+        <a href="mailto:winewisdomwonders@gmail.com?subject=Join%20The%20Vine%20to%20Soul%E2%84%A2%20Mailing%20List">Join the waitlist →</a>
+      </div>
+      <div class="wine-card">
+        <h4>The Soirée</h4>
+        <p>Curated gatherings where wine, music and storytelling meet — for people and brands alike.</p>
+        <a href="mailto:winewisdomwonders@gmail.com?subject=Book%20a%20Vine%20to%20Soul%E2%84%A2%20Experience">Book an experience →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Liz Ogumbo®. All rights reserved.</div>
+    <div>
+      <a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navList = document.getElementById('navList');
+  burger.addEventListener('click', () => navList.classList.toggle('open'));
+  document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+</body>
+</html>
