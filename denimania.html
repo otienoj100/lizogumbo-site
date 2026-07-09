@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeniMania™ — Liz Ogumbo®</title>
+<meta name="description" content="DeniMania™ transforms discarded denim into luxury fashion, music, storytelling and economic opportunity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html#home" class="logo">LIZ OGUMBO<sup>®</sup></a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="kensoul.html" class="nav-link">KenSoul™</a></li>
+        <li><a href="fashion.html" class="nav-link">Fashion</a></li>
+        <li><a href="denimania.html" class="nav-link">DeniMania™</a></li>
+        <li><a href="wines.html" class="nav-link">Wines</a></li>
+        <li><a href="index.html#kamatana" class="nav-link">Kamatana™</a></li>
+        <li><a href="mediaroom.html" class="nav-link">Media Room</a></li>
+        <li><a href="journal.html" class="nav-link">My Journal</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li id="authSlot"></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page-hero">
+  <div class="wrap">
+    <a href="index.html#denimania" class="back-link">&larr; Back to overview</a>
+    <span class="eyebrow accent-denim">Circular Couture · Cultural Production</span>
+    <h1>DeniMania<sup style="font-size:0.5em;">™</sup></h1>
+    <p class="lede">Where circular fashion meets cultural innovation. What began with discarded denim transformed into couture has grown into a full ecosystem of fashion, storytelling, education and creative collaboration.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap two-col">
+    <div class="prose">
+      <p>Created by Liz Ogumbo, DeniMania™ transforms discarded denim into luxury fashion, original music, cultural storytelling, education and economic opportunity. More than a collection, it's a cultural ecosystem proving that waste can become both beauty and impact.</p>
+      <p>Rooted in the belief that what's overlooked can be reimagined, DeniMania™ is powered by the patented <b style="color:var(--bone);">3R Methodology™</b> and explores new possibilities for materials, culture and community through design-led innovation.</p>
+      <div class="v-quote">"We don't see waste. We see stories waiting to be retold."<br>— Liz Ogumbo</div>
+      <p>From collections and cultural experiences to partnerships and learning initiatives, DeniMania™ continues to examine how creativity can create both beauty and impact. One piece. Another chapter.</p>
+
+      <h3>Collaborate</h3>
+      <p>DeniMania™ welcomes collaborations with brands, institutions, cultural organisations, educators and communities interested in circular fashion, creative learning and cultural innovation.</p>
+      <div class="cta-row">
+        <a href="mailto:denimaniaworld@gmail.com?subject=Partnerships%2C%20Speaking%20engagements%2C%20Workshops%2C%20%26%20Collaborations" class="btn btn-solid" style="background:var(--indigo);">Partner with DeniMania™</a>
+        <a href="mailto:denimaniaworld@gmail.com?subject=Join%20the%20DeniMania%E2%84%A2%20Journal" class="btn btn-ghost">Join the Journal</a>
+      </div>
+    </div>
+    <div class="info-card">
+      <h4>At a Glance</h4>
+      <div class="kv"><div class="k">Material</div><div>Reclaimed denim</div></div>
+      <div class="kv"><div class="k">Method</div><div>3R Methodology™</div></div>
+      <div class="kv"><div class="k">Reach</div><div>Collections · education · partnerships</div></div>
+      <div class="kv"><div class="k">Enquiries</div><div>denimaniaworld@gmail.com</div></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="gallery">
+      <img src="https://static.wixstatic.com/media/02ca65_c47b9831d8b6426a89e58281fb40f95f~mv2.jpg" alt="DeniMania circular couture">
+      <img src="https://static.wixstatic.com/media/02ca65_79e5f82b5a9b4ce39333740a1cd3d180~mv2.jpg" alt="DeniMania collection detail">
+      <img src="https://static.wixstatic.com/media/02ca65_7ef1b0e79b6b4d5589fd7d31d74c6a56~mv2.jpg" alt="DeniMania collection detail">
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Liz Ogumbo®. All rights reserved.</div>
+    <div>
+      <a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navList = document.getElementById('navList');
+  burger.addEventListener('click', () => navList.classList.toggle('open'));
+  document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>

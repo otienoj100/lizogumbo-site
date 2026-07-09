@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashion — Liz Ogumbo®</title>
+<meta name="description" content="Liz Ogumbo Fashion™ — African heritage, circular creativity and conscious luxury since 2007.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html#home" class="logo">LIZ OGUMBO<sup>®</sup></a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="kensoul.html" class="nav-link">KenSoul™</a></li>
+        <li><a href="fashion.html" class="nav-link">Fashion</a></li>
+        <li><a href="denimania.html" class="nav-link">DeniMania™</a></li>
+        <li><a href="wines.html" class="nav-link">Wines</a></li>
+        <li><a href="index.html#kamatana" class="nav-link">Kamatana™</a></li>
+        <li><a href="mediaroom.html" class="nav-link">Media Room</a></li>
+        <li><a href="journal.html" class="nav-link">My Journal</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li id="authSlot"></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page-hero">
+  <div class="wrap">
+    <a href="index.html#fashion" class="back-link">&larr; Back to overview</a>
+    <span class="eyebrow accent-fashion">Since 2007</span>
+    <h1>Liz Ogumbo Fashion™</h1>
+    <p class="lede">African heritage. Circular creativity. Conscious luxury. The original creative platform where Liz explores identity and heritage through design.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap two-col">
+    <div class="prose">
+      <p>Liz Ogumbo Fashion™ is where a design career built on craftsmanship and narrative began. Since 2007, the label has merged Kenyan heritage with contemporary silhouette, producing ready-to-wear and couture pieces worn by a globally conscious audience.</p>
+      <p>Bold, elegant and timeless — the collections embrace self-definition through sleek cuts and provocative simplicity, with an attitude that comes from the inside.</p>
+      <p>Nearly two decades of collections, runway presentations and advocacy-driven design work laid the creative and technical foundation for DeniMania™ and the patented 3R Methodology™ — proof that a fashion house can be both a design studio and a research lab.</p>
+
+      <h3>What defines the label</h3>
+      <ul>
+        <li>Ready-to-wear and couture rooted in Kenyan craftsmanship</li>
+        <li>Design language that treats heritage as a living, evolving material</li>
+        <li>A runway and editorial practice that doubles as cultural commentary</li>
+        <li>The design R&amp;D behind DeniMania™'s circular couture</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>The Label</h4>
+      <div class="kv"><div class="k">Founded</div><div>2007</div></div>
+      <div class="kv"><div class="k">Discipline</div><div>Ready-to-wear &amp; couture</div></div>
+      <div class="kv"><div class="k">Sister brand</div><div>DeniMania™</div></div>
+      <div class="kv"><div class="k">Enquiries</div><div>liz@lizogumbo.com</div></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="gallery" style="grid-template-columns:1.4fr 1fr 1fr;">
+      <img src="https://static.wixstatic.com/media/02ca65_741a3689289b41d5b005e2d4626fc4eb~mv2.jpg" alt="Liz Ogumbo Fashion — 12 years a brand">
+      <img src="https://static.wixstatic.com/media/02ca65_c47b9831d8b6426a89e58281fb40f95f~mv2.jpg" alt="Liz Ogumbo Fashion runway detail">
+      <img src="https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg" alt="Liz Ogumbo">
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Liz Ogumbo®. All rights reserved.</div>
+    <div>
+      <a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navList = document.getElementById('navList');
+  burger.addEventListener('click', () => navList.classList.toggle('open'));
+  document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>

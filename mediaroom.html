@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Room — Liz Ogumbo®</title>
+<meta name="description" content="Official press photos, video and press kit downloads for Liz Ogumbo and her creative ecosystems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html#home" class="logo">LIZ OGUMBO<sup>®</sup></a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="kensoul.html" class="nav-link">KenSoul™</a></li>
+        <li><a href="fashion.html" class="nav-link">Fashion</a></li>
+        <li><a href="denimania.html" class="nav-link">DeniMania™</a></li>
+        <li><a href="wines.html" class="nav-link">Wines</a></li>
+        <li><a href="index.html#kamatana" class="nav-link">Kamatana™</a></li>
+        <li><a href="mediaroom.html" class="nav-link active">Media Room</a></li>
+        <li><a href="journal.html" class="nav-link">My Journal</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li id="authSlot"></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow accent-fashion">Press &amp; Partners</span>
+    <h1>Media Room</h1>
+    <p class="lede">A curated space for journalists, collaborators, and cultural partners to access official information, visuals, and press resources about Liz Ogumbo and her creative ecosystems.</p>
+
+    <div id="adminAddRow" style="display:none;">
+      <button class="upload-btn" id="toggleAdmin">+ Add Media (Team Only)</button>
+      <div class="admin-panel" id="adminPanel" style="display:none;">
+        <h4 style="margin-bottom:14px; color:var(--bone); font-family:'Fraunces',serif; font-size:1.1rem;">Upload New Media</h4>
+        <div class="field"><label>Media Type</label>
+          <select id="mtType" style="width:100%; background:var(--ink); border:1px solid var(--line); border-radius:10px; padding:12px 14px; color:var(--bone);">
+            <option value="print">Print / Photo</option>
+            <option value="video">Video</option>
+          </select>
+        </div>
+        <div class="field"><label>Title / Caption</label><input type="text" id="mtTitle" placeholder="e.g. Liz Ogumbo — DeniMania Runway 2026"></div>
+
+        <div id="printFields">
+          <div class="field"><label>Upload Image File</label><input type="file" id="mtFile" accept="image/*"></div>
+        </div>
+        <div id="videoFields" style="display:none;">
+          <div class="field"><label>YouTube Video ID or URL</label><input type="text" id="mtYoutube" placeholder="e.g. jhcMuVZlU0U or full YouTube link"></div>
+          <div class="field"><label>Duration</label><input type="text" id="mtDuration" placeholder="e.g. 04:12"></div>
+        </div>
+
+        <button class="btn btn-solid" type="button" id="mtPublish" style="background:var(--teal);">Publish to Media Room</button>
+        <p class="admin-note" id="mtStatus"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="mr-tabs" id="mrTabs">
+      <button class="mr-tab active" data-tab="print">Print Media</button>
+      <button class="mr-tab" data-tab="video">Video</button>
+    </div>
+
+    <div class="mr-panel active" id="panel-print">
+      <div class="print-grid" id="printGrid"></div>
+    </div>
+
+    <div class="mr-panel" id="panel-video">
+      <div class="video-grid" id="videoGrid"></div>
+    </div>
+
+    <div class="info-card" style="margin-top:60px;">
+      <h4>Press Kit (Downloads)</h4>
+      <div class="kv"><div class="k">Bio</div><div><a href="https://www.lizogumbo.com/_files/ugd/02ca65_27bf2d4cb954456a8c62c7640d1b2589.pdf" style="color:var(--coral);">Official Biography →</a></div></div>
+      <div class="kv"><div class="k">Kit</div><div><a href="https://www.lizogumbo.com/_files/ugd/02ca65_2f7795f8280143bcb3a3469f4ad5f1b5.pdf" style="color:var(--coral);">Full Press Kit →</a></div></div>
+      <div class="kv"><div class="k">Contact</div><div><a href="mailto:lizogumbobookings@gmail.com" style="color:var(--coral);">Press &amp; Bookings →</a></div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+const FALLBACK_MEDIA = [
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_5718dc41aa6b4f029e35a133eef9ff0c~mv2.png"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_3e9ce73127cc45b1a5564bed5bfc30eb~mv2.jpeg"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_9bbf2bd7f3c940a3a2c5b7302f019bcf~mv2.jpg"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_eadb4a26df1143e18ba5b21315e5a96f~mv2.jpg"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_47d3b54fde314509be35f9136ab19911~mv2.jpg"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_2edc71a2391e4ad7a23b81b6090ab39b~mv2.png"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_76bf8569a2b1443d940d5833809116eb~mv2.png"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_9e69787b891845efaa5529c60d582cab~mv2.png"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_02a97c436c7648f083f3e0eae53664a0~mv2.png"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_8e3f5a7083204da0bbc863c507040b81~mv2.jpg"},
+  {type:"print", title:"Press Photo", external_url:"https://static.wixstatic.com/media/02ca65_c51da38280134772959cf8002b9ca273~mv2.png"},
+  {type:"video", title:"Liz Ogumbo MUSIC EPK", external_url:"https://www.youtube.com/watch?v=1wOdGlLg4vs", thumbnail_url:"https://i.ytimg.com/vi/1wOdGlLg4vs/maxresdefault.jpg", duration:"08:59"},
+  {type:"video", title:"Explore Liz Ogumbo's KenSoul", external_url:"https://www.youtube.com/watch?v=Ujqjhem2wbw", thumbnail_url:"https://i.ytimg.com/vi/Ujqjhem2wbw/maxresdefault.jpg", duration:"03:36"},
+  {type:"video", title:"Fertility Is A Right, Not A Lab Experiment", external_url:"https://www.youtube.com/watch?v=jhcMuVZlU0U", thumbnail_url:"https://i.ytimg.com/vi/jhcMuVZlU0U/maxresdefault.jpg", duration:"06:11"}
+];
+
+function renderPrint(items) {
+  document.getElementById('printGrid').innerHTML = items.map(m => `
+    <a href="${m.external_url}" target="_blank" rel="noopener"><img src="${m.external_url}" alt="${m.title || 'Liz Ogumbo press photo'}"></a>
+  `).join('');
+}
+function renderVideo(items) {
+  document.getElementById('videoGrid').innerHTML = items.map(m => `
+    <a class="video-card" href="${m.external_url}" target="_blank" rel="noopener">
+      <div class="thumb-wrap">
+        <img src="${m.thumbnail_url}" alt="${m.title}">
+        <div class="play-badge"><span>&#9658;</span></div>
+      </div>
+      <div class="v-body"><h4>${m.title}</h4><div class="dur">${m.duration || ''}</div></div>
+    </a>
+  `).join('');
+}
+
+async function loadMedia() {
+  let items = [];
+  try {
+    const { data, error } = await sb.from('media_items').select('*').order('created_at', { ascending:false });
+    if (error || !data || !data.length) throw error || new Error('empty');
+    items = data;
+  } catch (e) {
+    items = FALLBACK_MEDIA;
+  }
+  renderPrint(items.filter(m => m.type === 'print'));
+  renderVideo(items.filter(m => m.type === 'video'));
+}
+loadMedia();
+
+document.querySelectorAll('#mrTabs .mr-tab').forEach(tab => tab.addEventListener('click', () => {
+  document.querySelectorAll('#mrTabs .mr-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  document.querySelectorAll('.mr-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+}));
+
+// ---------------- Admin: gate the Add Media button ----------------
+async function updateAdminUI() {
+  const profile = await LizAuth.loadProfile();
+  document.getElementById('adminAddRow').style.display = (profile && profile.role === 'admin') ? 'block' : 'none';
+}
+window.addEventListener('liz-auth-change', updateAdminUI);
+document.addEventListener('DOMContentLoaded', () => setTimeout(updateAdminUI, 300));
+
+document.getElementById('toggleAdmin').addEventListener('click', () => {
+  const p = document.getElementById('adminPanel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+});
+
+document.getElementById('mtType').addEventListener('change', (e) => {
+  const isPrint = e.target.value === 'print';
+  document.getElementById('printFields').style.display = isPrint ? 'block' : 'none';
+  document.getElementById('videoFields').style.display = isPrint ? 'none' : 'block';
+});
+
+function extractYouTubeId(input) {
+  const m = input.match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : (input.length === 11 ? input : null);
+}
+
+document.getElementById('mtPublish').addEventListener('click', async () => {
+  const status = document.getElementById('mtStatus');
+  const type = document.getElementById('mtType').value;
+  const title = document.getElementById('mtTitle').value.trim();
+  const profile = LizAuth.getProfile();
+  if (!title) { status.textContent = 'Title is required.'; return; }
+  if (!profile) { status.textContent = 'Please log in again.'; return; }
+
+  status.textContent = 'Publishing…';
+
+  if (type === 'print') {
+    const file = document.getElementById('mtFile').files[0];
+    if (!file) { status.textContent = 'Choose an image file first.'; return; }
+    const path = `print/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g,'_')}`;
+    const { error: upErr } = await sb.storage.from('media').upload(path, file);
+    if (upErr) { status.textContent = 'Upload failed: ' + upErr.message; return; }
+    const { data: pub } = sb.storage.from('media').getPublicUrl(path);
+    const { error } = await sb.from('media_items').insert({
+      type: 'print', title, storage_path: path, external_url: pub.publicUrl, uploaded_by: profile.id
+    });
+    status.textContent = error ? ('Error: ' + error.message) : 'Published! Reloading…';
+    if (!error) setTimeout(() => location.reload(), 900);
+  } else {
+    const raw = document.getElementById('mtYoutube').value.trim();
+    const duration = document.getElementById('mtDuration').value.trim();
+    const ytId = extractYouTubeId(raw);
+    if (!ytId) { status.textContent = 'Could not read a YouTube video ID from that.'; return; }
+    const { error } = await sb.from('media_items').insert({
+      type: 'video', title,
+      external_url: `https://www.youtube.com/watch?v=${ytId}`,
+      thumbnail_url: `https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg`,
+      duration, uploaded_by: profile.id
+    });
+    status.textContent = error ? ('Error: ' + error.message) : 'Published! Reloading…';
+    if (!error) setTimeout(() => location.reload(), 900);
+  }
+});
+</script>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Liz Ogumbo®. All rights reserved.</div>
+    <div>
+      <a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navList = document.getElementById('navList');
+  burger.addEventListener('click', () => navList.classList.toggle('open'));
+  document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>

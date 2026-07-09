@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wine, Wisdom & Wonders™ — Liz Ogumbo®</title>
+<meta name="description" content="A 7-module masterclass on wine, culture and storytelling by Liz Ogumbo Wines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html#home" class="logo">LIZ OGUMBO<sup>®</sup></a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="kensoul.html" class="nav-link">KenSoul™</a></li>
+        <li><a href="fashion.html" class="nav-link">Fashion</a></li>
+        <li><a href="denimania.html" class="nav-link">DeniMania™</a></li>
+        <li><a href="wines.html" class="nav-link">Wines</a></li>
+        <li><a href="index.html#kamatana" class="nav-link">Kamatana™</a></li>
+        <li><a href="mediaroom.html" class="nav-link">Media Room</a></li>
+        <li><a href="journal.html" class="nav-link">My Journal</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li id="authSlot"></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page-hero">
+  <div class="wrap">
+    <a href="wines.html" class="back-link">&larr; Back to Wines</a>
+    <span class="eyebrow accent-wines">A Vine to Soul™ Experience</span>
+    <h1>Wine, Wisdom &amp; Wonders™</h1>
+    <p class="lede">Discover wine through culture, hospitality, storytelling and sensory awareness — a masterclass by Liz Ogumbo Wines.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap two-col">
+    <div class="prose">
+      <p>Wine, Wisdom &amp; Wonders™ is a guided journey into wine as culture — not just what's in the glass, but the hospitality, history and sensory language around it. Built for the curious rather than the credentialed.</p>
+      <h3>What's included</h3>
+      <ul>
+        <li>7 filmed modules</li>
+        <li>A structured curriculum, module by module</li>
+        <li>Downloadable resources to keep and revisit</li>
+      </ul>
+      <p>Whether you're hosting your first tasting or deepening a long-standing love of wine, the masterclass frames every sip as a story worth telling.</p>
+    </div>
+    <div class="info-card">
+      <h4>Program</h4>
+      <div class="kv"><div class="k">Format</div><div>Self-paced, filmed</div></div>
+      <div class="kv"><div class="k">Modules</div><div>7</div></div>
+      <div class="kv"><div class="k">Price</div><div>US$97.00</div></div>
+      <div style="margin-top:18px;">
+        <a href="mailto:winewisdomwonders@gmail.com?subject=Enrol%20in%20Wine%2C%20Wisdom%20%26%20Wonders" class="btn btn-solid" style="background:var(--plum); width:100%; justify-content:center;">Enrol Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Liz Ogumbo®. All rights reserved.</div>
+    <div>
+      <a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navList = document.getElementById('navList');
+  burger.addEventListener('click', () => navList.classList.toggle('open'));
+  document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>

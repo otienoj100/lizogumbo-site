@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Journal — Liz Ogumbo®</title>
+<meta name="description" content="Stories from Liz Ogumbo and the team, filed across KenSoul, Fashion, DeniMania, Vine to Soul, Kamatana and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html#home" class="logo">LIZ OGUMBO<sup>®</sup></a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="kensoul.html" class="nav-link">KenSoul™</a></li>
+        <li><a href="fashion.html" class="nav-link">Fashion</a></li>
+        <li><a href="denimania.html" class="nav-link">DeniMania™</a></li>
+        <li><a href="wines.html" class="nav-link">Wines</a></li>
+        <li><a href="index.html#kamatana" class="nav-link">Kamatana™</a></li>
+        <li><a href="mediaroom.html" class="nav-link">Media Room</a></li>
+        <li><a href="journal.html" class="nav-link">My Journal</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li id="authSlot"></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow accent-fashion">The Full Archive</span>
+    <h1>My Journal</h1>
+    <p class="lede">Stories from the table, the studio and the road — filed under whichever part of the ecosystem they belong to. Written by Liz and the team.</p>
+  </div>
+</section>
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div id="adminNewPostRow" style="display:none; margin-bottom:24px;">
+      <button class="upload-btn" id="toggleNewPost">+ New Post</button>
+      <div class="admin-panel" id="newPostPanel" style="display:none;">
+        <div class="field"><label>Title</label><input type="text" id="npTitle"></div>
+        <div class="field"><label>Category</label>
+          <select id="npCategory" style="width:100%; background:var(--ink); border:1px solid var(--line); border-radius:10px; padding:12px 14px; color:var(--bone);">
+            <option>From My Table</option><option>KenSoul</option><option>Liz Ogumbo Fashion</option><option>DeniMania</option><option>Vine to Soul</option><option>Fashion Lab</option><option>Cultural Architecture</option><option>Kamatana</option>
+          </select>
+        </div>
+        <div class="field"><label>Excerpt</label><input type="text" id="npExcerpt"></div>
+        <div class="field"><label>Hero image URL</label><input type="text" id="npHero"></div>
+        <div class="field"><label>Content (paragraphs, one per line)</label><textarea id="npContent" style="min-height:160px;"></textarea></div>
+        <div class="field"><label>Read time</label><input type="text" id="npReadTime" value="3 min read"></div>
+        <button class="btn btn-solid" id="npPublish" style="background:var(--teal);">Publish Post</button>
+        <p class="admin-note" id="npStatus"></p>
+      </div>
+    </div>
+
+    <div class="login-gate" id="filterGate">
+      <span>Log in to filter My Journal by category.</span>
+      <a href="#" id="filterGateLogin">Log In →</a>
+    </div>
+    <div class="filter-bar" id="filterBar" style="display:none;">
+      <button class="filter-btn active" data-filter="all">All Posts</button><button class="filter-btn" data-filter="From My Table">From My Table</button><button class="filter-btn" data-filter="KenSoul">KenSoul</button><button class="filter-btn" data-filter="Liz Ogumbo Fashion">Liz Ogumbo Fashion</button><button class="filter-btn" data-filter="DeniMania">DeniMania</button><button class="filter-btn" data-filter="Vine to Soul">Vine to Soul</button><button class="filter-btn" data-filter="Fashion Lab">Fashion Lab</button><button class="filter-btn" data-filter="Cultural Architecture">Cultural Architecture</button><button class="filter-btn" data-filter="Kamatana">Kamatana</button>
+    </div>
+
+    <div class="blog-grid" id="journalGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">No posts yet in this category — check back soon.</div>
+  </div>
+</section>
+
+<script>
+const FALLBACK_POSTS = [{"title": "The Table Was Always My Classroom", "slug": "table-was-my-classroom", "category": "From My Table", "excerpt": "A reflection on wine, hospitality and the power of gathering.", "content": "\n        <p class=\"post-meta\">Vine to Soul\u2122 Journal</p>\n        <p>Long before I understood wine as an industry, I understood it as a table. Someone pouring, someone listening, a story arriving between the second glass and the third. That's where I actually learned about hospitality \u2014 not in a classroom, but at a table that never seemed to empty.</p>\n        <p>Every culture I've lived in has had its own version of that table. What's stayed constant is the role it plays: it slows people down long enough to actually see each other. That, more than any tasting note, is what I try to build into every Liz Ogumbo Wines\u2122 experience.</p>\n        <p>Wine, Wisdom &amp; Wonders\u2122 grew out of that same instinct \u2014 the belief that the most useful wine education isn't about memorising regions, it's about learning to host. To pour with intention. To let a glass be an invitation rather than a performance.</p>\n        <p>So if you're building your own table, start small. One good bottle, one honest question, and the patience to let the conversation breathe. The rest tends to follow.</p>\n        ", "hero_image": "https://static.wixstatic.com/media/02ca65_599952433001451593939054b04f652b~mv2.jpg", "author_name": "Liz Ogumbo", "author_avatar": "https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg", "read_time": "3 min read", "published_at": "Jun 18, 2026"}, {"title": "Refashioning Denim for a Circular Luxury Future", "slug": "refashioning-denim", "category": "DeniMania", "excerpt": "Denim built the 20th century's idea of luxury \u2014 DeniMania\u2122 is rebuilding it for the 21st.", "content": "\n        <p class=\"post-meta\">DeniMania\u2122 Journal</p>\n        <p>Denim built the twentieth century's idea of everyday luxury \u2014 durable, democratic, endlessly reinvented. It's fitting, then, that denim is also where I've chosen to test what circular luxury can look like for the twenty-first.</p>\n        <p>DeniMania\u2122 didn't start as a sustainability initiative. It started as curiosity: what happens if a discarded pair of jeans is treated with the same seriousness as a bolt of silk? The answer, again and again, has been that the material has more to say than we give it credit for \u2014 you just have to be willing to unpick it, literally, to hear it.</p>\n        <p>Our 3R Methodology\u2122 \u2014 reclaim, reconstruct, retell \u2014 is less a production process than a discipline. Every collection has to answer three questions: what was this before, what is it becoming, and whose story does it now carry?</p>\n        <p>Circular fashion is often framed as a constraint. I'd argue the opposite. Some of our most ambitious silhouettes only exist because the material forced us to think differently. Waste, treated seriously, is one of the more generous design briefs I've worked with.</p>\n        ", "hero_image": "https://static.wixstatic.com/media/02ca65_ec3599d135ed412aab06cc6c2cf29351~mv2.png", "author_name": "Liz Ogumbo", "author_avatar": "https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg", "read_time": "4 min read", "published_at": "May 27, 2026"}, {"title": "Why Africa Must Say No: We Are Not a Testing Ground", "slug": "why-africa-must-say-no", "category": "Cultural Architecture", "excerpt": "On autonomy, consent, and why the continent isn't anyone's testing ground.", "content": "\n        <p class=\"post-meta\">Advocacy Journal</p>\n        <p>There's a pattern that repeats across health, tech and agriculture alike: new interventions arrive on the continent framed as opportunity, tested at a scale and speed they'd never be permitted elsewhere. Consent gets treated as a formality instead of a foundation.</p>\n        <p>I make music and clothes and wine, but the thread underneath all of it is the same one that shows up here: who gets to author the story of a body, a community, a resource. Africa has been cast as backdrop for too long. It's time we're credited \u2014 and consulted \u2014 as authors.</p>\n        <p>Saying no isn't obstruction. It's the beginning of a real negotiation, one where communities set the terms instead of receiving them. That's the version of progress worth building toward.</p>\n        <p>This is advocacy I carry into every part of my work \u2014 because culture, health and autonomy were never separate conversations to begin with.</p>\n        ", "hero_image": "https://i.ytimg.com/vi/jhcMuVZlU0U/maxresdefault.jpg", "author_name": "Liz Ogumbo", "author_avatar": "https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg", "read_time": "4 min read", "published_at": "Apr 9, 2026"}];
+let ALL_POSTS = [];
+
+function renderCard(p) {
+  const cat = p.category;
+  const date = new Date(p.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+  return `
+    <a class="post-card journal-card" href="post.html?slug=${p.slug}" data-category="${cat}">
+      <div class="thumb"><img src="${p.hero_image}" alt="${p.title}"></div>
+      <div class="body">
+        <span class="post-cat-tag">${cat}</span>
+        <h4>${p.title}</h4>
+        <p>${p.excerpt || ''}</p>
+        <div class="post-meta-row">
+          <img class="post-avatar" src="${p.author_avatar}" alt="${p.author_name}">
+          <div class="post-byline"><b>${p.author_name}</b><br>${date} · ${p.read_time}</div>
+        </div>
+        <span class="read">Read the post →</span>
+      </div>
+    </a>`;
+}
+
+function renderAll(posts) {
+  document.getElementById('journalGrid').innerHTML = posts.map(renderCard).join('');
+}
+
+async function loadPosts() {
+  try {
+    const { data, error } = await sb.from('posts').select('*').order('published_at', { ascending:false });
+    if (error || !data || !data.length) throw error || new Error('empty');
+    ALL_POSTS = data;
+  } catch (e) {
+    ALL_POSTS = FALLBACK_POSTS; // Supabase not configured yet, or empty table — show demo content
+  }
+  renderAll(ALL_POSTS);
+}
+loadPosts();
+
+document.getElementById('filterGateLogin').addEventListener('click', (e) => { e.preventDefault(); LizAuth.openModal('in'); });
+
+async function updateFilterGate() {
+  const profile = await LizAuth.loadProfile();
+  document.getElementById('filterGate').style.display = profile ? 'none' : 'flex';
+  document.getElementById('filterBar').style.display = profile ? 'flex' : 'none';
+  document.getElementById('adminNewPostRow').style.display = (profile && profile.role === 'admin') ? 'block' : 'none';
+}
+window.addEventListener('liz-auth-change', updateFilterGate);
+document.addEventListener('DOMContentLoaded', () => setTimeout(updateFilterGate, 300));
+
+const btns = document.querySelectorAll('#filterBar .filter-btn');
+const empty = document.getElementById('emptyState');
+const grid = document.getElementById('journalGrid');
+btns.forEach(btn => btn.addEventListener('click', () => {
+  btns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  const filtered = f === 'all' ? ALL_POSTS : ALL_POSTS.filter(p => p.category === f);
+  renderAll(filtered);
+  grid.style.display = filtered.length ? '' : 'none';
+  empty.style.display = filtered.length ? 'none' : 'block';
+}));
+
+document.getElementById('toggleNewPost').addEventListener('click', () => {
+  const p = document.getElementById('newPostPanel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+});
+
+document.getElementById('npPublish').addEventListener('click', async () => {
+  const status = document.getElementById('npStatus');
+  const title = document.getElementById('npTitle').value.trim();
+  const category = document.getElementById('npCategory').value;
+  const excerpt = document.getElementById('npExcerpt').value.trim();
+  const hero_image = document.getElementById('npHero').value.trim();
+  const read_time = document.getElementById('npReadTime').value.trim() || '3 min read';
+  const contentLines = document.getElementById('npContent').value.trim().split('\n').filter(Boolean);
+  const content = contentLines.map(l => `<p>${l}</p>`).join('\n');
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') + '-' + Date.now().toString(36);
+  const profile = LizAuth.getProfile();
+  if (!title || !content) { status.textContent = 'Title and content are required.'; return; }
+  const { error } = await sb.from('posts').insert({
+    title, slug, category, excerpt, content, hero_image, read_time,
+    author_name: profile.full_name || profile.email, author_avatar: profile.avatar_url
+  });
+  status.textContent = error ? ('Error: ' + error.message) : 'Published! Reloading…';
+  if (!error) setTimeout(() => location.reload(), 900);
+});
+</script>
+
+
+<footer>
+  <div class="wrap foot-inner">
+    <div>© 2026 Liz Ogumbo®. All rights reserved.</div>
+    <div>
+      <a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navList = document.getElementById('navList');
+  burger.addEventListener('click', () => navList.classList.toggle('open'));
+  document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>
