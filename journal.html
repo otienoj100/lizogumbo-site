@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,600&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
 
 </head>
 <body>
@@ -28,6 +30,7 @@
         <li><a href="mediaroom.html" class="nav-link">Media Room</a></li>
         <li><a href="journal.html" class="nav-link">My Journal</a></li>
         <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        <li id="authSlot"></li>
       </ul>
     </nav>
   </div>
@@ -43,72 +46,128 @@
 </section>
 <section style="padding-top:0;">
   <div class="wrap">
+    <div id="adminNewPostRow" style="display:none; margin-bottom:24px;">
+      <button class="upload-btn" id="toggleNewPost">+ New Post</button>
+      <div class="admin-panel" id="newPostPanel" style="display:none;">
+        <div class="field"><label>Title</label><input type="text" id="npTitle"></div>
+        <div class="field"><label>Category</label>
+          <select id="npCategory" style="width:100%; background:var(--ink); border:1px solid var(--line); border-radius:10px; padding:12px 14px; color:var(--bone);">
+            <option>From My Table</option><option>KenSoul</option><option>Liz Ogumbo Fashion</option><option>DeniMania</option><option>Vine to Soul</option><option>Fashion Lab</option><option>Cultural Architecture</option><option>Kamatana</option>
+          </select>
+        </div>
+        <div class="field"><label>Excerpt</label><input type="text" id="npExcerpt"></div>
+        <div class="field"><label>Hero image: upload from your device</label><input type="file" id="npHeroFile" accept="image/*"></div>
+        <div class="field"><label>or paste an image link (optional)</label><input type="text" id="npHero"></div>
+        <div class="field"><label>Content (paragraphs, one per line)</label><textarea id="npContent" style="min-height:160px;"></textarea></div>
+        <div class="field"><label>Read time</label><input type="text" id="npReadTime" value="3 min read"></div>
+        <button class="btn btn-solid" id="npPublish" style="background:var(--teal);">Publish Post</button>
+        <p class="admin-note" id="npStatus"></p>
+      </div>
+    </div>
+
     <div class="filter-bar" id="filterBar">
       <button class="filter-btn active" data-filter="all">All Posts</button><button class="filter-btn" data-filter="From My Table">From My Table</button><button class="filter-btn" data-filter="KenSoul">KenSoul</button><button class="filter-btn" data-filter="Liz Ogumbo Fashion">Liz Ogumbo Fashion</button><button class="filter-btn" data-filter="DeniMania">DeniMania</button><button class="filter-btn" data-filter="Vine to Soul">Vine to Soul</button><button class="filter-btn" data-filter="Fashion Lab">Fashion Lab</button><button class="filter-btn" data-filter="Cultural Architecture">Cultural Architecture</button><button class="filter-btn" data-filter="Kamatana">Kamatana</button>
     </div>
-    <div class="blog-grid" id="journalGrid">
-      
-      <a class="post-card journal-card" href="blog-table-was-my-classroom.html" data-category="From My Table">
-        <div class="thumb"><img src="https://static.wixstatic.com/media/02ca65_599952433001451593939054b04f652b~mv2.jpg" alt="The Table Was Always My Classroom"></div>
-        <div class="body">
-          <span class="post-cat-tag">From My Table</span>
-          <h4>The Table Was Always My Classroom</h4>
-          <p>A reflection on wine, hospitality and the power of gathering.</p>
-          <div class="post-meta-row">
-            <img class="post-avatar" src="https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg" alt="Liz Ogumbo">
-            <div class="post-byline"><b>Liz Ogumbo</b><br>Jun 18, 2026 · 3 min read</div>
-          </div>
-          <span class="read">Read the post →</span>
-        </div>
-      </a>
-      <a class="post-card journal-card" href="blog-refashioning-denim.html" data-category="DeniMania">
-        <div class="thumb"><img src="https://static.wixstatic.com/media/02ca65_ec3599d135ed412aab06cc6c2cf29351~mv2.png" alt="Refashioning Denim for a Circular Luxury Future"></div>
-        <div class="body">
-          <span class="post-cat-tag">DeniMania</span>
-          <h4>Refashioning Denim for a Circular Luxury Future</h4>
-          <p>Denim built the 20th century's idea of luxury — DeniMania™ is rebuilding it for the 21st.</p>
-          <div class="post-meta-row">
-            <img class="post-avatar" src="https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg" alt="Liz Ogumbo">
-            <div class="post-byline"><b>Liz Ogumbo</b><br>May 27, 2026 · 4 min read</div>
-          </div>
-          <span class="read">Read the post →</span>
-        </div>
-      </a>
-      <a class="post-card journal-card" href="blog-why-africa-must-say-no.html" data-category="Cultural Architecture">
-        <div class="thumb"><img src="https://i.ytimg.com/vi/jhcMuVZlU0U/maxresdefault.jpg" alt="Why Africa Must Say No: We Are Not a Testing Ground"></div>
-        <div class="body">
-          <span class="post-cat-tag">Cultural Architecture</span>
-          <h4>Why Africa Must Say No: We Are Not a Testing Ground</h4>
-          <p>On autonomy, consent, and why the continent isn't anyone's testing ground.</p>
-          <div class="post-meta-row">
-            <img class="post-avatar" src="https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg" alt="Liz Ogumbo">
-            <div class="post-byline"><b>Liz Ogumbo</b><br>Apr 9, 2026 · 4 min read</div>
-          </div>
-          <span class="read">Read the post →</span>
-        </div>
-      </a>
-    </div>
+
+    <div class="blog-grid" id="journalGrid"></div>
     <div class="empty-state" id="emptyState" style="display:none;">No posts yet in this category — check back soon.</div>
   </div>
 </section>
+
 <script>
-  const btns = document.querySelectorAll('#filterBar .filter-btn');
-  const cards = document.querySelectorAll('.journal-card');
-  const empty = document.getElementById('emptyState');
-  const grid = document.getElementById('journalGrid');
-  btns.forEach(btn => btn.addEventListener('click', () => {
-    btns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.filter;
-    let visible = 0;
-    cards.forEach(c => {
-      const show = (f === 'all' || c.dataset.category === f);
-      c.style.display = show ? '' : 'none';
-      if(show) visible++;
-    });
-    grid.style.display = visible ? '' : 'none';
-    empty.style.display = visible ? 'none' : 'block';
-  }));
+const FALLBACK_POSTS = [{"title": "The Table Was Always My Classroom", "slug": "table-was-my-classroom", "category": "From My Table", "excerpt": "A reflection on wine, hospitality and the power of gathering.", "content": "\n        <p class=\"post-meta\">Vine to Soul\u2122 Journal</p>\n        <p>Long before I understood wine as an industry, I understood it as a table. Someone pouring, someone listening, a story arriving between the second glass and the third. That's where I actually learned about hospitality \u2014 not in a classroom, but at a table that never seemed to empty.</p>\n        <p>Every culture I've lived in has had its own version of that table. What's stayed constant is the role it plays: it slows people down long enough to actually see each other. That, more than any tasting note, is what I try to build into every Liz Ogumbo Wines\u2122 experience.</p>\n        <p>Wine, Wisdom &amp; Wonders\u2122 grew out of that same instinct \u2014 the belief that the most useful wine education isn't about memorising regions, it's about learning to host. To pour with intention. To let a glass be an invitation rather than a performance.</p>\n        <p>So if you're building your own table, start small. One good bottle, one honest question, and the patience to let the conversation breathe. The rest tends to follow.</p>\n        ", "hero_image": "https://static.wixstatic.com/media/02ca65_599952433001451593939054b04f652b~mv2.jpg", "author_name": "Liz Ogumbo", "author_avatar": "https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg", "read_time": "3 min read", "published_at": "Jun 18, 2026"}, {"title": "Refashioning Denim for a Circular Luxury Future", "slug": "refashioning-denim", "category": "DeniMania", "excerpt": "Denim built the 20th century's idea of luxury \u2014 DeniMania\u2122 is rebuilding it for the 21st.", "content": "\n        <p class=\"post-meta\">DeniMania\u2122 Journal</p>\n        <p>Denim built the twentieth century's idea of everyday luxury \u2014 durable, democratic, endlessly reinvented. It's fitting, then, that denim is also where I've chosen to test what circular luxury can look like for the twenty-first.</p>\n        <p>DeniMania\u2122 didn't start as a sustainability initiative. It started as curiosity: what happens if a discarded pair of jeans is treated with the same seriousness as a bolt of silk? The answer, again and again, has been that the material has more to say than we give it credit for \u2014 you just have to be willing to unpick it, literally, to hear it.</p>\n        <p>Our 3R Methodology\u2122 \u2014 reclaim, reconstruct, retell \u2014 is less a production process than a discipline. Every collection has to answer three questions: what was this before, what is it becoming, and whose story does it now carry?</p>\n        <p>Circular fashion is often framed as a constraint. I'd argue the opposite. Some of our most ambitious silhouettes only exist because the material forced us to think differently. Waste, treated seriously, is one of the more generous design briefs I've worked with.</p>\n        ", "hero_image": "https://static.wixstatic.com/media/02ca65_ec3599d135ed412aab06cc6c2cf29351~mv2.png", "author_name": "Liz Ogumbo", "author_avatar": "https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg", "read_time": "4 min read", "published_at": "May 27, 2026"}, {"title": "Why Africa Must Say No: We Are Not a Testing Ground", "slug": "why-africa-must-say-no", "category": "Cultural Architecture", "excerpt": "On autonomy, consent, and why the continent isn't anyone's testing ground.", "content": "\n        <p class=\"post-meta\">Advocacy Journal</p>\n        <p>There's a pattern that repeats across health, tech and agriculture alike: new interventions arrive on the continent framed as opportunity, tested at a scale and speed they'd never be permitted elsewhere. Consent gets treated as a formality instead of a foundation.</p>\n        <p>I make music and clothes and wine, but the thread underneath all of it is the same one that shows up here: who gets to author the story of a body, a community, a resource. Africa has been cast as backdrop for too long. It's time we're credited \u2014 and consulted \u2014 as authors.</p>\n        <p>Saying no isn't obstruction. It's the beginning of a real negotiation, one where communities set the terms instead of receiving them. That's the version of progress worth building toward.</p>\n        <p>This is advocacy I carry into every part of my work \u2014 because culture, health and autonomy were never separate conversations to begin with.</p>\n        ", "hero_image": "https://i.ytimg.com/vi/jhcMuVZlU0U/maxresdefault.jpg", "author_name": "Liz Ogumbo", "author_avatar": "https://static.wixstatic.com/media/02ca65_7b9c92cf080f4b809edfbe81f3a5fe5e~mv2.jpg", "read_time": "4 min read", "published_at": "Apr 9, 2026"}];
+let ALL_POSTS = [];
+
+function renderCard(p) {
+  const cat = p.category;
+  const date = new Date(p.published_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+  return `
+    <a class="post-card journal-card" href="post.html?slug=${p.slug}" data-category="${cat}">
+      <div class="thumb"><img src="${p.hero_image}" alt="${p.title}"></div>
+      <div class="body">
+        <span class="post-cat-tag">${cat}</span>
+        <h4>${p.title}</h4>
+        <p>${p.excerpt || ''}</p>
+        <div class="post-meta-row">
+          <img class="post-avatar" src="${p.author_avatar}" alt="${p.author_name}">
+          <div class="post-byline"><b>${p.author_name}</b><br>${date} · ${p.read_time}</div>
+        </div>
+        <span class="read">Read the post →</span>
+      </div>
+    </a>`;
+}
+
+function renderAll(posts) {
+  document.getElementById('journalGrid').innerHTML = posts.map(renderCard).join('');
+}
+
+async function loadPosts() {
+  try {
+    const { data, error } = await sb.from('posts').select('*').order('published_at', { ascending:false });
+    if (error || !data || !data.length) throw error || new Error('empty');
+    ALL_POSTS = data;
+  } catch (e) {
+    ALL_POSTS = FALLBACK_POSTS; // Supabase not configured yet, or empty table — show demo content
+  }
+  renderAll(ALL_POSTS);
+}
+loadPosts();
+
+async function updateAdminUI() {
+  const profile = await LizAuth.loadProfile();
+  document.getElementById('adminNewPostRow').style.display = (profile && profile.role === 'admin') ? 'block' : 'none';
+}
+window.addEventListener('liz-auth-change', updateAdminUI);
+document.addEventListener('DOMContentLoaded', () => { setTimeout(updateAdminUI, 300); setTimeout(updateAdminUI, 1500); });
+if (window.sb) sb.auth.onAuthStateChange(() => setTimeout(updateAdminUI, 200));
+
+const btns = document.querySelectorAll('#filterBar .filter-btn');
+const empty = document.getElementById('emptyState');
+const grid = document.getElementById('journalGrid');
+btns.forEach(btn => btn.addEventListener('click', () => {
+  btns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const f = btn.dataset.filter;
+  const filtered = f === 'all' ? ALL_POSTS : ALL_POSTS.filter(p => p.category === f);
+  renderAll(filtered);
+  grid.style.display = filtered.length ? '' : 'none';
+  empty.style.display = filtered.length ? 'none' : 'block';
+}));
+
+document.getElementById('toggleNewPost').addEventListener('click', () => {
+  const p = document.getElementById('newPostPanel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+});
+
+document.getElementById('npPublish').addEventListener('click', async () => {
+  const status = document.getElementById('npStatus');
+  const title = document.getElementById('npTitle').value.trim();
+  const category = document.getElementById('npCategory').value;
+  const excerpt = document.getElementById('npExcerpt').value.trim();
+  let hero_image = document.getElementById('npHero').value.trim();
+  const read_time = document.getElementById('npReadTime').value.trim() || '3 min read';
+  const contentLines = document.getElementById('npContent').value.trim().split('\n').filter(Boolean);
+  const content = contentLines.map(l => `<p>${l}</p>`).join('\n');
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') + '-' + Date.now().toString(36);
+  const profile = LizAuth.getProfile();
+  if (!title || !content) { status.textContent = 'Title and content are required.'; return; }
+  if (!profile) { status.textContent = 'Please log in again.'; return; }
+  const heroFile = document.getElementById('npHeroFile').files[0];
+  if (heroFile) {
+    status.textContent = 'Uploading image…';
+    const path = `journal/${Date.now()}-${heroFile.name.replace(/[^a-zA-Z0-9.]/g,'_')}`;
+    const { error: upErr } = await sb.storage.from('media').upload(path, heroFile);
+    if (upErr) { status.textContent = 'Image upload failed: ' + upErr.message; return; }
+    hero_image = sb.storage.from('media').getPublicUrl(path).data.publicUrl;
+  }
+  status.textContent = 'Publishing…';
+  const { error } = await sb.from('posts').insert({
+    title, slug, category, excerpt, content, hero_image, read_time,
+    author_name: profile.full_name || profile.email, author_avatar: profile.avatar_url
+  });
+  status.textContent = error ? ('Error: ' + error.message) : 'Published! Reloading…';
+  if (!error) setTimeout(() => location.reload(), 900);
+});
 </script>
 
 
@@ -128,5 +187,6 @@
   document.querySelectorAll('.nav-link').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
 </script>
 
+<script src="auth.js"></script>
 </body>
 </html>
